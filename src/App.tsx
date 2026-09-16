@@ -20,15 +20,36 @@ import { AdminApp } from './admin/AdminApp';
 
 const checkIsAdminPath = () => {
   if (typeof window === 'undefined') return false;
-  const path = window.location.pathname.toLowerCase();
+  const rawPath = window.location.pathname.toLowerCase().replace(/\/+$/, '');
   const hash = window.location.hash.toLowerCase();
-  return (
-    path === '/admin' ||
-    path.startsWith('/admin/') ||
+  const search = window.location.search.toLowerCase();
+
+  // 1. Path checking (supports direct domain /admin, /admin/..., and GitHub Pages /<repo-name>/admin)
+  const segments = rawPath.split('/').filter(Boolean);
+  const hasAdminInPath =
+    rawPath === '/admin' ||
+    rawPath.startsWith('/admin/') ||
+    rawPath.endsWith('/admin') ||
+    segments.includes('admin');
+
+  // 2. Hash checking (#admin, #/admin, #/admin/...)
+  const cleanHash = hash.replace(/^#\/?/, '');
+  const hasAdminInHash =
+    cleanHash === 'admin' ||
+    cleanHash.startsWith('admin/') ||
     hash === '#admin' ||
     hash === '#/admin' ||
-    hash.startsWith('#/admin/')
-  );
+    hash.startsWith('#/admin/');
+
+  // 3. Search query checking (?/admin from SPA fallback or ?admin or ?page=admin)
+  const hasAdminInSearch =
+    search === '?admin' ||
+    search.startsWith('?/admin') ||
+    search.startsWith('?admin') ||
+    search.includes('page=admin') ||
+    search.includes('p=/admin');
+
+  return hasAdminInPath || hasAdminInHash || hasAdminInSearch;
 };
 
 export default function App() {

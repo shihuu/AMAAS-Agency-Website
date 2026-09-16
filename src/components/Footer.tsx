@@ -122,6 +122,21 @@ export const Footer: React.FC<FooterProps> = () => {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#bdc8d1]/70 gap-4">
           <div className="flex items-center space-x-3">
             <span>© 2026 AMAAS. All rights reserved. International Full-Stack Digital Solutions.</span>
+            <span className="text-white/[0.2]">•</span>
+            <a
+              href={`${(import.meta.env.BASE_URL || '/').replace(/\/+$/, '')}/admin`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                  e.preventDefault();
+                  const adminUrl = `${(import.meta.env.BASE_URL || '/').replace(/\/+$/, '')}/admin`;
+                  window.history.pushState(null, '', adminUrl);
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
+              className="text-[#94a3b8] hover:text-[#38bdf8] transition-colors cursor-pointer text-[11px] font-mono"
+            >
+              Admin Portal
+            </a>
           </div>
 
           <button

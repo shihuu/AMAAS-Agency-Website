@@ -208,9 +208,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
           <div className="flex items-center gap-1">
             <a
-              href="/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={import.meta.env.BASE_URL || '/'}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
+                  e.preventDefault();
+                  const target = import.meta.env.BASE_URL || '/';
+                  window.history.pushState(null, '', target);
+                  window.dispatchEvent(new PopStateEvent('popstate'));
+                }
+              }}
               className="flex-1 px-3 py-2 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] text-xs text-[#cbd5e1] hover:text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
             >
               <span>Public Site</span>

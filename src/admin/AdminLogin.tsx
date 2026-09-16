@@ -87,8 +87,9 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
     if (!supabase) return;
 
     try {
+      const adminPath = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '') + '/admin';
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/admin',
+        redirectTo: window.location.origin + adminPath,
       });
       if (error) {
         setErrorMsg(error.message);
