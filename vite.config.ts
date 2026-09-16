@@ -17,7 +17,7 @@ function getBasePath(): string {
     if (!base.endsWith('/')) base = `${base}/`;
     return base;
   }
-  return '/';
+  return './';
 }
 
 export default defineConfig(() => {
@@ -37,13 +37,28 @@ export default defineConfig(() => {
               if (!fs.existsSync(adminDir)) {
                 fs.mkdirSync(adminDir, { recursive: true });
               }
-              const indexContent = fs.readFileSync(srcIndex, 'utf-8');
 
-              // Ensure admin/index.html works both with absolute and relative paths
-              const adminContent = indexContent
-                .replace(/(src|href)="(\.\/assets\/)/g, '$1="../assets/')
-                .replace(/(src|href)='(\.\/assets\/)/g, "$1='../assets/");
-              fs.writeFileSync(path.join(adminDir, 'index.html'), adminContent, 'utf-8');
+              // admin/index.html bridge: redirects to app root with ?/admin query
+              // so all bundles, styles, and assets resolve from the exact root without 404
+              const adminHtml = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AMAAS Admin</title>
+    <script type="text/javascript">
+      var l = window.location;
+      var cleanBase = l.pathname.replace(/\\/admin\\/?$/i, '') || '';
+      var search = l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '';
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        cleanBase + '/?/admin' + search + l.hash
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>`;
+              fs.writeFileSync(path.join(adminDir, 'index.html'), adminHtml, 'utf-8');
 
               // GitHub Pages SPA fallback: 404.html redirects deep paths like /admin to /?/admin
               const notFoundHtml = `<!DOCTYPE html>

@@ -62,6 +62,17 @@ export default function App() {
   const [websiteContent, setWebsiteContent] = useState<Record<string, string>>({});
   const [activeCaseStudy, setActiveCaseStudy] = useState<Project | null>(null);
 
+  // Clean up any query-string SPA redirect (?/admin) to a clean /admin path after React mounts
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const search = window.location.search;
+    if (search && (search.includes('admin') || search.startsWith('?/'))) {
+      const rawBase = (import.meta.env.BASE_URL || '/').replace(/\/+$/, '');
+      const cleanUrl = `${rawBase}/admin${window.location.hash}`;
+      window.history.replaceState(null, '', cleanUrl);
+    }
+  }, []);
+
   // Listen for navigation changes between public site and /admin
   useEffect(() => {
     const handleRouteChange = () => {
