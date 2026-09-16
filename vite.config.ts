@@ -6,6 +6,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: process.env.VITE_BASE_PATH || process.env.BASE_PATH || './',
     plugins: [
       react(),
       tailwindcss(),
@@ -21,6 +22,8 @@ export default defineConfig(() => {
                 fs.mkdirSync(adminDir, { recursive: true });
               }
               fs.copyFileSync(srcIndex, path.join(adminDir, 'index.html'));
+              // GitHub Pages SPA fallback: 404.html serves the app on direct navigation/reloads
+              fs.copyFileSync(srcIndex, path.join(distPath, '404.html'));
             }
           } catch (e) {
             console.error('Failed to create admin/index.html fallback:', e);
