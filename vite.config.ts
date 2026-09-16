@@ -7,9 +7,7 @@ import {defineConfig} from 'vite';
 export default defineConfig(({ mode }) => {
   // In production mode, set base to process.env.VITE_BASE_PATH || '/AMAAS-Agency-Website/'
   // In development mode, set base to '/'
-  const base = mode === 'production'
-    ? (process.env.VITE_BASE_PATH || '/AMAAS-Agency-Website/')
-    : '/';
+  const base = '/';
 
   return {
     base,
