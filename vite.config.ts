@@ -4,7 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import {defineConfig} from 'vite';
 
-function getBasePath(): string {
+function getBasePath(mode?: string): string {
   let base = process.env.VITE_BASE_PATH || process.env.BASE_PATH || '';
   if (!base && process.env.GITHUB_REPOSITORY) {
     const repo = process.env.GITHUB_REPOSITORY.split('/')[1];
@@ -12,17 +12,20 @@ function getBasePath(): string {
       base = `/${repo}`;
     }
   }
+  if (!base && (mode === 'production' || process.env.NODE_ENV === 'production')) {
+    base = '/AMAAS-Agency-Website';
+  }
   if (base) {
     if (!base.startsWith('/')) base = `/${base}`;
     if (!base.endsWith('/')) base = `${base}/`;
     return base;
   }
-  return './';
+  return '/';
 }
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   return {
-    base: getBasePath(),
+    base: getBasePath(mode),
     plugins: [
       react(),
       tailwindcss(),
