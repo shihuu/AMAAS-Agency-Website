@@ -19,6 +19,10 @@ const normalizeSupabaseUrl = (url: string): string => {
 };
 
 const supabaseUrl: string = normalizeSupabaseUrl(rawSupabaseUrl);
+console.log('[Supabase Debug] URL exists:', Boolean(supabaseUrl));
+console.log('[Supabase Debug] Publishable key exists:', Boolean(
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+));
 const supabaseAnonKey: string = (
   import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
   import.meta.env.VITE_SUPABASE_ANON_KEY ||
