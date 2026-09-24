@@ -148,18 +148,34 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 {project.category}
               </span>
               <span className="text-white/[0.2]">•</span>
-              <span className="text-xs font-mono text-[#a5c8ff]">{project.year} Production Release</span>
+              <span className="text-xs font-mono text-[#a5c8ff]">{project.year} Release</span>
+              <span className="text-white/[0.2]">•</span>
+              <span className="px-2.5 py-0.5 rounded-full bg-cyan-950/80 border border-[#38bdf8]/40 text-[11px] font-mono text-[#67e8f9]">
+                {project.badge || 'Demonstration Project'}
+              </span>
             </div>
 
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight leading-tight">
               {project.title}
             </h1>
 
-            {/* Business Type */}
+            {/* Project Type */}
             <div className="mt-3 flex items-center space-x-2 text-sm text-[#8ed5ff] font-medium">
               <Building2 className="w-4 h-4 text-[#38bdf8] shrink-0" />
-              <span>{caseStudy.businessType}</span>
+              <span>Project Type: {project.projectType || caseStudy.businessType}</span>
             </div>
+
+            {/* Services Demonstrated */}
+            {project.servicesDemonstrated && project.servicesDemonstrated.length > 0 && (
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                <span className="text-[#7bd0ff] font-medium text-[11px] font-display uppercase tracking-wider">Services Demonstrated:</span>
+                {project.servicesDemonstrated.map((s, idx) => (
+                  <span key={idx} className="px-2.5 py-0.5 rounded-md bg-[#38bdf8]/15 border border-[#38bdf8]/30 text-[#8ed5ff] text-[11px]">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            )}
 
             {/* Short Project Introduction */}
             <p className="mt-4 text-base sm:text-lg text-[#bdc8d1] font-normal leading-relaxed max-w-3xl">

@@ -4,7 +4,10 @@ import { AtmosphericBackground } from './components/AtmosphericBackground';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
+import { BusinessSolutionsSection } from './components/BusinessSolutionsSection';
 import { WorkSection } from './components/WorkSection';
+import { AiSolutionsSection } from './components/AiSolutionsSection';
+import { MarketingSection } from './components/MarketingSection';
 import { ProcessSection } from './components/ProcessSection';
 import { TechnologySection } from './components/TechnologySection';
 import { PricingSection } from './components/PricingSection';
@@ -13,7 +16,8 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { AllProjectsPage } from './components/AllProjectsPage';
 import { CaseStudyModal } from './components/CaseStudyModal';
-import { PricingPlan, Project, ServiceItem } from './types';
+import { ServicePackagesModal } from './components/ServicePackagesModal';
+import { PricingPlan, Project, ServiceItem, ServicePackage } from './types';
 import { fetchProjectsFromDB, fetchServicesFromDB, fetchPricingFromDB, fetchWebsiteContent } from './lib/cmsData';
 import { PROJECTS_DATA, SERVICES_DATA, PRICING_PLANS } from './data';
 import { AdminApp } from './admin/AdminApp';
@@ -61,6 +65,34 @@ export default function App() {
   const [pricing, setPricing] = useState<PricingPlan[]>(PRICING_PLANS);
   const [websiteContent, setWebsiteContent] = useState<Record<string, string>>({});
   const [activeCaseStudy, setActiveCaseStudy] = useState<Project | null>(null);
+  const [isPackagesModalOpen, setIsPackagesModalOpen] = useState(false);
+  const [activePackageService, setActivePackageService] = useState<string | undefined>(undefined);
+
+  const handleOpenPackages = (serviceTitle?: string) => {
+    setActivePackageService(serviceTitle);
+    setIsPackagesModalOpen(true);
+  };
+
+  const handleSelectServicePackage = (serviceTitle: string, packageTier: ServicePackage) => {
+    setSelectedPlan({
+      id: `pkg-${packageTier.level.toLowerCase()}`,
+      name: `${serviceTitle} — ${packageTier.name} Package`,
+      price: packageTier.priceDisplay,
+      bestFor: packageTier.tagline,
+      features: packageTier.inclusions,
+      buttonText: 'Request a Quote',
+    });
+    setIsPackagesModalOpen(false);
+
+    setTimeout(() => {
+      const formEl = document.getElementById('project-form');
+      if (formEl) {
+        formEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        scrollToContact();
+      }
+    }, 150);
+  };
 
   // Listen for navigation changes between public site and /admin
   useEffect(() => {
@@ -222,7 +254,26 @@ export default function App() {
             />
 
             {/* 8. Services */}
-            <ServicesSection services={services} onStartProject={scrollToContact} />
+            <ServicesSection
+              services={services}
+              onStartProject={scrollToContact}
+              onOpenPackages={handleOpenPackages}
+            />
+
+            {/* Business Solutions */}
+            <BusinessSolutionsSection
+              onSelectSolution={(solutionName) => {
+                setSelectedPlan({
+                  id: 'solution',
+                  name: solutionName,
+                  price: 'Custom Scope',
+                  bestFor: 'Tailored Business Problem Solving',
+                  features: [],
+                  buttonText: 'Request a Quote',
+                });
+                scrollToContact();
+              }}
+            />
 
             {/* 9. Selected Work */}
             <WorkSection
@@ -235,17 +286,48 @@ export default function App() {
               onViewCaseStudy={(proj) => setActiveCaseStudy(proj)}
             />
 
+            {/* AI Solutions & Workflow Automation */}
+            <AiSolutionsSection
+              onStartAiProject={() => {
+                setSelectedPlan({
+                  id: 'ai-automation',
+                  name: 'AI & Workflow Automation',
+                  price: 'Custom Scope',
+                  bestFor: 'Intelligent Assistants & Workflow Automation',
+                  features: [],
+                  buttonText: 'Request a Quote',
+                });
+                scrollToContact();
+              }}
+            />
+
+            {/* Performance Marketing & SEO */}
+            <MarketingSection
+              onStartMarketing={() => {
+                setSelectedPlan({
+                  id: 'marketing',
+                  name: 'Performance Marketing & SEO Strategy',
+                  price: 'Custom Scope',
+                  bestFor: 'Multi-Channel Acquisition Sprint',
+                  features: [],
+                  buttonText: 'Request a Quote',
+                });
+                scrollToContact();
+              }}
+            />
+
             {/* 10. Process */}
             <ProcessSection />
 
             {/* 11. Technology */}
             <TechnologySection />
 
-            {/* 12. Pricing */}
+            {/* 12. Pricing / Custom Quotation */}
             <PricingSection
               plans={pricing}
               onSelectPlan={handleSelectPlan}
               onCustomQuote={scrollToContact}
+              onOpenPackages={handleOpenPackages}
             />
 
             {/* 13. Why AMAAS & 14. About */}
@@ -262,6 +344,18 @@ export default function App() {
 
       {/* 16. Footer */}
       <Footer />
+
+      {/* Dedicated 4-Tier Service Packages Modal */}
+      <AnimatePresence>
+        {isPackagesModalOpen && (
+          <ServicePackagesModal
+            isOpen={isPackagesModalOpen}
+            onClose={() => setIsPackagesModalOpen(false)}
+            initialServiceTitle={activePackageService}
+            onSelectPackage={handleSelectServicePackage}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Case Study Full Modal */}
       <AnimatePresence>

@@ -19,8 +19,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     email: '',
     phone: '',
     businessName: '',
-    projectType: 'Full-Stack Development',
-    budget: preselectedPlan ? `${preselectedPlan.name} (${preselectedPlan.price})` : 'Business ($1,999)',
+    projectType: 'Website Development',
+    budget: preselectedPlan ? `${preselectedPlan.name} (Custom Quote)` : 'Custom Quote / Flexible',
     message: '',
   });
 
@@ -32,13 +32,28 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     businessName: '',
   });
 
-  // Update budget when preselected plan changes
+  // Update budget and projectType when preselected plan changes
   useEffect(() => {
     if (preselectedPlan) {
-      setFormData((prev) => ({
-        ...prev,
-        budget: `${preselectedPlan.name} (${preselectedPlan.price})`,
-      }));
+      setFormData((prev) => {
+        let matchedService = prev.projectType;
+        const nameLower = preselectedPlan.name.toLowerCase();
+        if (nameLower.includes('website')) matchedService = 'Website Development';
+        else if (nameLower.includes('seo')) matchedService = 'SEO';
+        else if (nameLower.includes('chatbot') || nameLower.includes('ai chat')) matchedService = 'AI Chatbot';
+        else if (nameLower.includes('automation') || nameLower.includes('ai auto')) matchedService = 'AI Automation';
+        else if (nameLower.includes('google ad')) matchedService = 'Google Ads';
+        else if (nameLower.includes('meta ad')) matchedService = 'Meta Ads';
+        else if (nameLower.includes('social media')) matchedService = 'Social Media Marketing';
+        else if (nameLower.includes('ui/ux') || nameLower.includes('design')) matchedService = 'UI/UX & Creative Design';
+        else if (nameLower.includes('deploy') || nameLower.includes('technical')) matchedService = 'Deployment & Technical Setup';
+
+        return {
+          ...prev,
+          projectType: matchedService,
+          budget: `${preselectedPlan.name} (Custom Quote)`,
+        };
+      });
     }
   }, [preselectedPlan]);
 
@@ -152,16 +167,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           <div className="max-w-3xl mx-auto">
             <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 mb-4">
               <span className="text-xs font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold">
-                International Web Studio
+                Digital Growth & Technology
               </span>
             </div>
 
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight leading-tight">
-              Ready To Build A Serious Digital Solution?
+              Ready to Build Something That Works?
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-[#bdc8d1] leading-relaxed">
-              Let's build a high-performance web application, corporate presence, or custom digital system tailored around your exact business goals.
+              Tell us about your business and what you're trying to achieve.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -169,15 +184,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 href="#project-form"
                 className="btn-primary-luminescence px-8 py-3.5 rounded-full text-sm font-semibold flex items-center space-x-2 shadow-lg"
               >
-                <span>Start Your Project</span>
+                <span>Start a Project</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
-                href="#pricing"
+                href="#project-form"
                 className="btn-acrylic px-7 py-3.5 rounded-full text-sm font-semibold"
               >
-                <span>View Packages ($USD)</span>
+                <span>Request a Quote</span>
               </a>
             </div>
           </div>
@@ -204,7 +219,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 Book a Consultation & Request a Quote
               </h3>
               <p className="text-xs sm:text-sm text-[#bdc8d1] mt-1">
-                Tell us about your requirements. You will receive an architectural overview and milestone breakdown within 24 hours.
+                Tell us about your business and what you're trying to achieve. You will receive an initial architectural and strategic response within 24 hours.
               </p>
             </div>
 
@@ -261,7 +276,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   
                   {preselectedPlan && (
                     <div className="p-3.5 rounded-xl bg-[#38bdf8]/10 border border-[#38bdf8]/30 flex items-center justify-between text-xs text-[#8ed5ff]">
-                      <span>Selected Package: <strong>{preselectedPlan.name} ({preselectedPlan.price} USD)</strong></span>
+                      <span>Selected Solution: <strong>{preselectedPlan.name}</strong></span>
                       {onClearPreselectedPlan && (
                         <button
                           type="button"
@@ -340,10 +355,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {/* Project Type */}
+                    {/* Service Needed */}
                     <div>
                       <label className="block text-xs font-display font-medium text-[#bdc8d1] mb-1.5">
-                        Service Requirement
+                        Service Needed
                       </label>
                       <select
                         name="projectType"
@@ -351,20 +366,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl bg-[#050B14]/90 border border-white/[0.1] text-sm text-white focus:outline-none focus:border-[#38bdf8] transition-colors cursor-pointer"
                       >
-                        <option value="Frontend Development">Frontend Development (UI/UX & Interactions)</option>
-                        <option value="Backend Development">Backend Development (APIs, Databases & Auth)</option>
-                        <option value="Full-Stack Development">Full-Stack Development (End-to-End System)</option>
-                        <option value="Business Websites">Business / Corporate Website</option>
-                        <option value="Custom Web Applications">Custom Web Application (SaaS, Portals & Tools)</option>
-                        <option value="Maintenance & Support">Ongoing Maintenance & Support</option>
-                        <option value="Custom Digital Solution">Custom Digital Solution</option>
+                        <option value="Website Development">Website Development</option>
+                        <option value="SEO">SEO</option>
+                        <option value="AI Chatbot">AI Chatbot</option>
+                        <option value="AI Automation">AI Automation</option>
+                        <option value="Google Ads">Google Ads</option>
+                        <option value="Meta Ads">Meta Ads</option>
+                        <option value="Social Media Marketing">Social Media Marketing</option>
+                        <option value="UI/UX & Creative Design">UI/UX & Creative Design</option>
+                        <option value="Deployment & Technical Setup">Deployment & Technical Setup</option>
+                        <option value="Comprehensive Agency Solution">Comprehensive Agency Solution</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
 
-                    {/* Budget */}
+                    {/* Budget Range / Package Tier */}
                     <div>
                       <label className="block text-xs font-display font-medium text-[#bdc8d1] mb-1.5">
-                        Target Investment (USD)
+                        Budget Range / Package Tier
                       </label>
                       <select
                         name="budget"
@@ -372,11 +391,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-xl bg-[#050B14]/90 border border-white/[0.1] text-sm text-white focus:outline-none focus:border-[#38bdf8] transition-colors cursor-pointer"
                       >
-                        <option value="Starter ($999)">Starter Package ($999)</option>
-                        <option value="Business ($1,999)">Business Package ($1,999) — Most Popular</option>
-                        <option value="Premium ($3,499)">Premium Package ($3,499)</option>
-                        <option value="Advanced ($5,999+)">Advanced Full-Stack ($5,999+)</option>
-                        <option value="Custom Enterprise ($10,000+)">Custom Enterprise / Tailored Scope</option>
+                        {formData.budget && !['Flexible / To Be Discussed', 'Starter Package Tier (Custom Quote)', 'Business Package Tier (Custom Quote)', 'Premium Package Tier (Custom Quote)', 'Custom Package Tier (Tailored)', 'Enterprise / Multi-Service Partnership'].includes(formData.budget) && (
+                          <option value={formData.budget}>{formData.budget}</option>
+                        )}
+                        <option value="Flexible / To Be Discussed">Flexible / To Be Discussed</option>
+                        <option value="Starter Package Tier (Custom Quote)">Starter Package Tier (Custom Quote)</option>
+                        <option value="Business Package Tier (Custom Quote)">Business Package Tier (Custom Quote)</option>
+                        <option value="Premium Package Tier (Custom Quote)">Premium Package Tier (Custom Quote)</option>
+                        <option value="Custom Package Tier (Tailored)">Custom Package Tier (Tailored)</option>
+                        <option value="Enterprise / Multi-Service Partnership">Enterprise / Multi-Service Partnership</option>
                       </select>
                     </div>
                   </div>
@@ -384,7 +407,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   {/* Message */}
                   <div>
                     <label className="block text-xs font-display font-medium text-[#bdc8d1] mb-1.5">
-                      Project Overview & Goals *
+                      Project Details *
                     </label>
                     <textarea
                       name="message"

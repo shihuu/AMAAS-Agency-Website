@@ -1,19 +1,21 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { PRICING_PLANS, PRICING_ADD_ONS } from '../data';
-import { Check, ArrowRight, PlusCircle, HelpCircle } from 'lucide-react';
+import { Check, ArrowRight, PlusCircle, HelpCircle, Layers } from 'lucide-react';
 import { PricingPlan } from '../types';
 import { fadeUpVariant, staggerContainer, cardRevealVariant, VIEWPORT_CONFIG } from '../lib/motion';
 
 interface PricingSectionProps {
   onSelectPlan: (plan: PricingPlan) => void;
   onCustomQuote: () => void;
+  onOpenPackages?: (serviceTitle?: string) => void;
   plans?: PricingPlan[];
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({
   onSelectPlan,
   onCustomQuote,
+  onOpenPackages,
   plans = PRICING_PLANS,
 }) => {
   const displayPlans = plans && plans.length > 0 ? plans : PRICING_PLANS;
@@ -32,15 +34,28 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
         >
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 mb-3">
             <span className="text-xs font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold">
-              Transparent Investment
+              Custom Quotation
             </span>
           </div>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight">
-            Tailored Development Packages
+            Custom Solutions. Built Around Your Business.
           </h2>
           <p className="mt-3 text-base sm:text-lg text-[#bdc8d1] font-normal leading-relaxed">
-            Transparent, milestone-based international pricing engineered to deliver tangible business returns and long-term scalability.
+            Every business is different. We don't believe in rigid, one-size-fits-all packages. Tell us your goals and we will structure the right solution for your exact requirements.
           </p>
+
+          {onOpenPackages && (
+            <div className="mt-6 flex items-center justify-center">
+              <button
+                onClick={() => onOpenPackages()}
+                className="btn-acrylic px-5 py-2.5 rounded-full text-xs font-semibold text-[#8ed5ff] hover:text-white flex items-center space-x-2 cursor-pointer shadow-sm hover:border-[#38bdf8]/50 transition-all group"
+              >
+                <Layers className="w-4 h-4 text-[#38bdf8] group-hover:scale-110 transition-transform" />
+                <span>View Dedicated 4-Tier Packages (All 9 Services)</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#38bdf8] group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          )}
         </motion.div>
 
         {/* 4 International Pricing Cards (Responsive 4-column layout) with staggered reveal */}
@@ -68,7 +83,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
                 {/* Popular highlight pill */}
                 {isPopular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#184b82] to-[#38bdf8] text-white text-[10px] font-display font-bold uppercase tracking-widest shadow-md flex items-center justify-center whitespace-nowrap">
-                    <span>{plan.popularBadge || 'MOST POPULAR'}</span>
+                    <span>{plan.popularBadge || 'MOST REQUESTED'}</span>
                   </div>
                 )}
 
@@ -82,10 +97,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
 
                   {/* Price */}
                   <div className="mb-2">
-                    <span className="font-display text-4xl font-bold text-white tracking-tight">
-                      {plan.price}
+                    <span className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                      {plan.price.includes('$') ? 'Custom Scope' : plan.price}
                     </span>
-                    <span className="text-xs text-[#a5c8ff]/70 ml-2 font-mono">USD</span>
+                    <span className="text-xs text-[#a5c8ff]/70 ml-2 font-mono">Tailored Quote</span>
                   </div>
 
                   {/* Best for */}
@@ -93,7 +108,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
                     <span>Best for: {plan.bestFor}</span>
                   </div>
 
-                  {/* Price note for Advanced */}
+                  {/* Price note */}
                   {plan.priceNote && (
                     <div className="text-[11px] text-[#bdc8d1]/75 italic mb-4 leading-snug">
                       {plan.priceNote}
@@ -106,7 +121,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
                   {/* Features list */}
                   <div className="space-y-2.5">
                     <div className="text-[11px] font-display font-bold uppercase tracking-wider text-[#7bd0ff] mb-2">
-                      Package Inclusions:
+                      Scope Inclusions:
                     </div>
                     {plan.features.map((feat, i) => (
                       <div key={i} className="flex items-start space-x-2 text-xs text-[#dce3f0] leading-relaxed">
@@ -127,7 +142,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
                         : 'btn-acrylic hover:border-[#38bdf8]/50'
                     }`}
                   >
-                    <span>{plan.buttonText}</span>
+                    <span>Request a Quote</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -146,10 +161,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
         >
           <div className="relative z-10">
             <div className="font-display text-lg sm:text-xl font-semibold text-white">
-              Have a project that doesn't fit these packages?
+              Every business is different. Let's build the right solution.
             </div>
             <div className="text-xs sm:text-sm text-[#bdc8d1] mt-1">
-              Let's build a solution around your exact business requirements, custom integrations, or legacy system migration.
+              Have unique integrations, multi-channel marketing requirements, or proprietary AI models? We build tailored quotes aligned with your roadmap.
             </div>
           </div>
 
@@ -157,7 +172,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
             onClick={onCustomQuote}
             className="btn-primary-luminescence px-6 py-3 rounded-full text-xs sm:text-sm font-semibold text-white whitespace-nowrap cursor-pointer shadow-lg shrink-0 flex items-center space-x-2"
           >
-            <span>Request a Custom Quote</span>
+            <span>Request a Quote</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </motion.div>
@@ -215,13 +230,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
           </motion.div>
         </motion.div>
 
-        {/* Section 6: Pricing Disclaimer */}
+        {/* Section 6: Quotation Scope Disclaimer */}
         <div className="mt-12 text-center max-w-3xl mx-auto space-y-1.5 text-[11px] text-[#bdc8d1]/65 leading-relaxed">
           <p>
-            * All prices are estimated project starting ranges. Final pricing may vary depending on project scope, number of pages, design complexity, functionality, integrations, content requirements and technical requirements.
+            * All proposals are structured around your business objectives. Detailed technical scopes and milestone deliverables are agreed upon before any project work begins.
           </p>
           <p>
-            * Domain, hosting, premium third-party services, paid APIs and external subscriptions are billed separately when required.
+            * Direct advertising spend, domain registrations, premium third-party APIs, and external software subscriptions are managed transparently without hidden markups.
           </p>
         </div>
 

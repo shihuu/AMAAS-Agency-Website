@@ -34,25 +34,52 @@ export const AboutSection: React.FC = () => {
           whileInView="visible"
           viewport={VIEWPORT_CONFIG}
           variants={fadeUpVariant}
-          className="max-w-4xl mx-auto text-center mb-20"
+          className="max-w-4xl mx-auto text-center mb-16"
         >
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 mb-4">
             <span className="text-xs font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold">
-              Engineering Studio
+              About AMAAS
             </span>
           </div>
 
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight">
-            Built For Serious Businesses With Ambition
+            Digital Growth, Technology & Automation
           </h2>
 
-          <p className="mt-5 text-base sm:text-lg text-[#bdc8d1] font-normal leading-relaxed max-w-2xl mx-auto">
-            AMAAS is a full-stack web development and digital solutions practice. We architect tailored web systems, custom business platforms, and conversion-optimized websites for international companies looking to establish authority and streamline customer acquisition.
+          <p className="mt-5 text-base sm:text-xl text-[#dce3f0] font-normal leading-relaxed max-w-3xl mx-auto">
+            AMAAS is a digital growth and technology agency combining marketing, AI, development and creative strategy to help businesses build, reach and convert.
           </p>
 
-          <div className="mt-6 flex items-center justify-center space-x-2 text-xs text-[#7bd0ff] font-medium">
+          {/* 4 Pillars Grid */}
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+            <div className="p-4 rounded-2xl bg-[#050B14]/70 border border-white/[0.08]">
+              <div className="text-[11px] font-mono text-[#38bdf8] font-bold uppercase tracking-wider">01 &bull; Technology</div>
+              <div className="font-display font-semibold text-white mt-1 text-sm">Full-Stack Engineering</div>
+              <p className="text-[11px] text-[#bdc8d1] mt-1 leading-snug">Fast web platforms, robust backend APIs & clean database systems.</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-[#050B14]/70 border border-white/[0.08]">
+              <div className="text-[11px] font-mono text-[#67e8f9] font-bold uppercase tracking-wider">02 &bull; Marketing</div>
+              <div className="font-display font-semibold text-white mt-1 text-sm">Performance Growth</div>
+              <p className="text-[11px] text-[#bdc8d1] mt-1 leading-snug">Google Ads, Meta Ads & Technical SEO campaigns that drive buyer intent.</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-[#050B14]/70 border border-white/[0.08]">
+              <div className="text-[11px] font-mono text-[#8ed5ff] font-bold uppercase tracking-wider">03 &bull; AI</div>
+              <div className="font-display font-semibold text-white mt-1 text-sm">Intelligent Automation</div>
+              <p className="text-[11px] text-[#bdc8d1] mt-1 leading-snug">24/7 client chatbots, automated lead qualification & operational pipelines.</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-[#050B14]/70 border border-white/[0.08]">
+              <div className="text-[11px] font-mono text-[#5bdeef] font-bold uppercase tracking-wider">04 &bull; Creative</div>
+              <div className="font-display font-semibold text-white mt-1 text-sm">UI/UX & Brand Design</div>
+              <p className="text-[11px] text-[#bdc8d1] mt-1 leading-snug">Conversion-centered interfaces and distinctive digital assets that elevate trust.</p>
+            </div>
+          </div>
+
+          <div className="mt-8 flex items-center justify-center space-x-2 text-xs text-[#7bd0ff] font-medium">
             <Globe className="w-4 h-4 text-[#38bdf8]" />
-            <span>Serving clients across the US, UK, Canada, Australia, Europe & Middle East</span>
+            <span>Serving ambitious businesses worldwide</span>
           </div>
         </motion.div>
 

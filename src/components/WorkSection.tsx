@@ -68,14 +68,14 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
           <div className="max-w-2xl">
             <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 mb-3">
               <span className="text-xs font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold">
-                Live Production Websites
+                Capability Showcases
               </span>
             </div>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight">
-              Selected Projects
+              Selected Work
             </h2>
             <p className="mt-3 text-base sm:text-lg text-[#bdc8d1] font-normal leading-relaxed">
-              Real websites designed, engineered, and actively deployed for businesses. Explore the complete case study or visit each live platform directly.
+              Explore live concept and demonstration platforms engineered to showcase our standards in high-performance web development, UI/UX architecture, and responsive execution.
             </p>
           </div>
 

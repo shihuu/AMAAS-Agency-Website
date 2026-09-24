@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { PROCESS_STEPS } from '../data';
-import { Compass, Target, PenTool, Code2, CheckCircle2, Rocket } from 'lucide-react';
+import { Compass, Target, Code2, Rocket, TrendingUp, Activity } from 'lucide-react';
 import { fadeUpVariant, staggerContainer, cardRevealVariant, VIEWPORT_CONFIG } from '../lib/motion';
 
 export const ProcessSection: React.FC = () => {
@@ -12,13 +12,13 @@ export const ProcessSection: React.FC = () => {
       case 1:
         return <Target className="w-5 h-5 text-[#67e8f9]" />;
       case 2:
-        return <PenTool className="w-5 h-5 text-[#8ed5ff]" />;
+        return <Code2 className="w-5 h-5 text-[#8ed5ff]" />;
       case 3:
-        return <Code2 className="w-5 h-5 text-[#7bd0ff]" />;
+        return <Rocket className="w-5 h-5 text-[#7bd0ff]" />;
       case 4:
-        return <CheckCircle2 className="w-5 h-5 text-[#38bdf8]" />;
+        return <TrendingUp className="w-5 h-5 text-[#38bdf8]" />;
       case 5:
-        return <Rocket className="w-5 h-5 text-[#5bdeef]" />;
+        return <Activity className="w-5 h-5 text-[#5bdeef]" />;
       default:
         return <Compass className="w-5 h-5 text-[#38bdf8]" />;
     }

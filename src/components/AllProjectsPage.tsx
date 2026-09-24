@@ -69,14 +69,14 @@ export const AllProjectsPage: React.FC<AllProjectsPageProps> = ({
       <div className="mb-12">
         <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 mb-3">
           <span className="text-xs font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold">
-            Project Archive & Live Production Sites
+            Selected Work & Capability Archive
           </span>
         </div>
         <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight">
-          All Projects ({publishedProjects.length})
+          Selected Projects ({publishedProjects.length})
         </h1>
         <p className="mt-3 text-base sm:text-lg text-[#bdc8d1] font-normal leading-relaxed max-w-3xl">
-          A comprehensive catalog of live web applications, boutique e-commerce platforms, and brand flagships engineered and actively maintained by AMAAS.
+          Explore demonstration web applications and concept platforms engineered with high standards of responsiveness, speed, and modern interface design.
         </p>
       </div>
 

@@ -19,6 +19,9 @@ export interface Project {
   slug?: string;
   title: string;
   category: string;
+  projectType?: string;
+  servicesDemonstrated?: string[];
+  badge?: string;
   shortDescription: string;
   thumbnail: string;
   image?: string;
@@ -159,4 +162,28 @@ export interface AdminUser {
   email: string;
   role: string;
   created_at?: string;
+}
+
+export type ServicePackageLevel = 'STARTER' | 'BUSINESS' | 'PREMIUM' | 'CUSTOM';
+
+export interface ServicePackage {
+  level: ServicePackageLevel;
+  name: string;
+  tagline: string;
+  badge?: string;
+  popular?: boolean;
+  priceDisplay: string;
+  inclusions: string[];
+  note?: string;
+}
+
+export interface ServicePackageGroup {
+  serviceId: string;
+  serviceNumber: string;
+  serviceTitle: string;
+  category: string;
+  shortDescription: string;
+  iconName: string;
+  disclaimer?: string;
+  packages: ServicePackage[];
 }

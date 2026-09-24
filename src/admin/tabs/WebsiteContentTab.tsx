@@ -108,7 +108,7 @@ export const WebsiteContentTab: React.FC = () => {
           </div>
           <button
             onClick={() =>
-              handleSaveSection('hero', ['badge', 'headline', 'subheadline', 'primary_cta_text', 'secondary_cta_text'])
+              handleSaveSection('hero', ['badge', 'headline', 'subheadline', 'philosophy', 'primary_cta_text', 'secondary_cta_text'])
             }
             disabled={savingSection === 'hero'}
             className="px-3.5 py-1.5 rounded-xl bg-[#0284c7] hover:bg-[#0369a1] text-xs font-medium text-white flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
@@ -155,6 +155,22 @@ export const WebsiteContentTab: React.FC = () => {
                 'We design, engineer, and deploy high-converting web applications, bespoke business platforms, and robust database architectures.'
               )}
               onChange={(e) => setVal('hero', 'subheadline', e.target.value)}
+              className="w-full px-3 py-2 rounded-xl bg-[#05090e] border border-white/[0.1] text-white text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-mono uppercase text-[#94a3b8] mb-1">
+              Core Philosophy / Agency Proposition
+            </label>
+            <textarea
+              rows={2}
+              value={getVal(
+                'hero',
+                'philosophy',
+                "We don't just build websites. We build professional digital solutions that help businesses establish their online presence, improve their workflow and grow."
+              )}
+              onChange={(e) => setVal('hero', 'philosophy', e.target.value)}
               className="w-full px-3 py-2 rounded-xl bg-[#05090e] border border-white/[0.1] text-white text-sm"
             />
           </div>

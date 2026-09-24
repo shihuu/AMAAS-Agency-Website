@@ -21,9 +21,12 @@ export const Footer: React.FC<FooterProps> = () => {
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'services', label: 'Services' },
+    { id: 'solutions', label: 'Solutions' },
     { id: 'work', label: 'Work' },
+    { id: 'ai-solutions', label: 'AI & Automation' },
+    { id: 'marketing', label: 'Marketing' },
     { id: 'process', label: 'Process' },
-    { id: 'pricing', label: 'Pricing' },
+    { id: 'pricing', label: 'Quote' },
     { id: 'about', label: 'About' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -42,20 +45,20 @@ export const Footer: React.FC<FooterProps> = () => {
 
           <div className="mt-3 text-center">
             <p className="text-[12px] font-display uppercase tracking-[0.25em] text-[#7bd0ff] font-semibold">
-              FULL-STACK WEB DEVELOPMENT & DIGITAL SOLUTIONS
+              DIGITAL GROWTH & TECHNOLOGY AGENCY
             </p>
             <p className="text-[11px] font-display uppercase tracking-[0.22em] text-[#dce3f0]/80 mt-0.5">
-              CUSTOM DIGITAL SOLUTIONS FOR GLOBAL BUSINESSES
+              TECHNOLOGY &bull; MARKETING &bull; AI &bull; CREATIVE DESIGN
             </p>
           </div>
 
           <p className="mt-4 text-sm text-[#bdc8d1] max-w-lg font-normal leading-relaxed">
-            Engineering bespoke digital platforms, custom web applications, and high-performance business websites for international clients.
+            AMAAS combines technology, AI, creative design and performance marketing to help businesses build, reach and convert.
           </p>
 
           <div className="mt-3 flex items-center justify-center space-x-1.5 text-xs text-[#8ed5ff]">
             <Globe className="w-3.5 h-3.5 text-[#38bdf8]" />
-            <span>Serving USA, UK, Canada, Australia, Europe & Middle East</span>
+            <span>Serving ambitious brands worldwide</span>
           </div>
 
           {/* Direct Contact Channels */}
@@ -121,7 +124,7 @@ export const Footer: React.FC<FooterProps> = () => {
         {/* Bottom copyright & Scroll To Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#bdc8d1]/70 gap-4">
           <div className="flex items-center space-x-3">
-            <span>© 2026 AMAAS. All rights reserved. International Full-Stack Digital Solutions.</span>
+            <span>© 2026 AMAAS. All rights reserved. Digital Growth & Technology Agency.</span>
             <span className="text-white/[0.2]">•</span>
             <a
               href={`${(import.meta.env.BASE_URL || '/').replace(/\/+$/, '')}/admin`}

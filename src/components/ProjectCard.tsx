@@ -105,9 +105,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             </div>
           )}
 
-          {/* Category Pill on top of Media */}
-          <div className="absolute top-3 left-3 z-20 px-2.5 py-0.5 rounded-full bg-[#03070E]/85 backdrop-blur-md border border-white/[0.12] text-[11px] font-display font-semibold text-[#8ed5ff]">
-            {project.category}
+          {/* Category & Demo Pill on top of Media */}
+          <div className="absolute top-3 left-3 z-20 flex items-center space-x-1.5">
+            <span className="px-2.5 py-0.5 rounded-full bg-[#03070E]/85 backdrop-blur-md border border-white/[0.12] text-[11px] font-display font-semibold text-[#8ed5ff]">
+              {project.category}
+            </span>
+            <span className="px-2 py-0.5 rounded-full bg-cyan-950/80 backdrop-blur-md border border-[#38bdf8]/40 text-[10px] font-mono text-[#67e8f9] shadow-sm">
+              {project.badge || 'Demonstration Project'}
+            </span>
           </div>
 
           {/* Year Pill */}
@@ -124,27 +129,39 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        {/* 2. Category Indicator */}
-        <div className="text-[11px] font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold mb-1.5">
-          {project.category}
+        {/* 2. Project Type Indicator */}
+        <div className="text-[11px] font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold mb-1">
+          {project.projectType || project.caseStudy.businessType || project.category}
         </div>
 
         {/* 3. Project Title */}
         <h3
           onClick={() => onViewCaseStudy(project)}
-          className="font-display text-2xl font-semibold text-white group-hover:text-[#8ed5ff] transition-colors duration-200 cursor-pointer mb-2.5"
+          className="font-display text-2xl font-semibold text-white group-hover:text-[#8ed5ff] transition-colors duration-200 cursor-pointer mb-2"
         >
           {project.title}
         </h3>
 
         {/* 4. Short Description */}
-        <p className="text-sm text-[#bdc8d1] leading-relaxed line-clamp-2 mb-4 font-normal">
+        <p className="text-sm text-[#bdc8d1] leading-relaxed line-clamp-2 mb-3.5 font-normal">
           {project.shortDescription}
         </p>
 
+        {/* Services Demonstrated preview */}
+        {project.servicesDemonstrated && project.servicesDemonstrated.length > 0 && (
+          <div className="mb-3 flex flex-wrap items-center gap-1.5 text-[11px]">
+            <span className="text-[#7bd0ff] font-medium text-[10px] font-display uppercase tracking-wider">Services:</span>
+            {project.servicesDemonstrated.map((srv, idx) => (
+              <span key={idx} className="px-2 py-0.5 rounded bg-[#38bdf8]/10 text-[#8ed5ff] text-[10px]">
+                {srv}
+              </span>
+            ))}
+          </div>
+        )}
+
         {/* Tech tags preview */}
         <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.technologies.slice(0, 3).map((tech, idx) => (
+          {project.technologies.slice(0, 4).map((tech, idx) => (
             <span
               key={idx}
               className="px-2.5 py-0.5 rounded-md bg-white/[0.04] text-[11px] font-mono text-[#a5c8ff] border border-white/[0.05] hover:border-[#38bdf8]/30 transition-colors"
