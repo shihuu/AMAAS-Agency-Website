@@ -255,8 +255,7 @@ export const ServicePackagesModal: React.FC<ServicePackagesModalProps> = ({
                 >
                   {/* Recommended Badge */}
                   {pkg.badge && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-[#184b82] to-[#38bdf8] text-white text-[10px] font-display font-bold uppercase tracking-widest shadow-md flex items-center space-x-1 whitespace-nowrap">
-                      <Sparkles className="w-3 h-3" />
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-[#184b82] to-[#38bdf8] text-white text-[10px] font-display font-bold uppercase tracking-widest shadow-md flex items-center justify-center whitespace-nowrap">
                       <span>{pkg.badge}</span>
                     </div>
                   )}

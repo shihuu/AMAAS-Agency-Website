@@ -146,7 +146,7 @@ export const SERVICE_PACKAGES_DATA: ServicePackageGroup[] = [
   {
     serviceId: 'ai-chatbot',
     serviceNumber: '03',
-    serviceTitle: 'AI Chatbots',
+    serviceTitle: 'AI Chatbot',
     category: 'Intelligent AI Assistants',
     shortDescription: 'AI-powered customer support and lead-generation assistants trained on your business data to engage visitors 24/7.',
     iconName: 'Bot',

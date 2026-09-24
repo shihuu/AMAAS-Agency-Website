@@ -77,7 +77,16 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
           <div className="mt-6 flex items-center justify-center">
             <button
-              onClick={() => (onOpenPackages ? onOpenPackages() : onStartProject())}
+              onClick={() => {
+                const el = document.getElementById('packages');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                } else if (onOpenPackages) {
+                  onOpenPackages();
+                } else {
+                  onStartProject();
+                }
+              }}
               className="btn-acrylic px-5 py-2.5 rounded-full text-xs font-semibold text-[#8ed5ff] hover:text-white flex items-center space-x-2 cursor-pointer shadow-sm hover:border-[#38bdf8]/50 transition-all group"
             >
               <Layers className="w-4 h-4 text-[#38bdf8] group-hover:scale-110 transition-transform" />

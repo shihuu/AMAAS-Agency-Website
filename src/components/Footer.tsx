@@ -21,12 +21,12 @@ export const Footer: React.FC<FooterProps> = () => {
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'services', label: 'Services' },
+    { id: 'packages', label: 'Packages' },
     { id: 'solutions', label: 'Solutions' },
     { id: 'work', label: 'Work' },
     { id: 'ai-solutions', label: 'AI & Automation' },
     { id: 'marketing', label: 'Marketing' },
     { id: 'process', label: 'Process' },
-    { id: 'pricing', label: 'Quote' },
     { id: 'about', label: 'About' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -123,23 +123,8 @@ export const Footer: React.FC<FooterProps> = () => {
 
         {/* Bottom copyright & Scroll To Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#bdc8d1]/70 gap-4">
-          <div className="flex items-center space-x-3">
+          <div>
             <span>© 2026 AMAAS. All rights reserved. Digital Growth & Technology Agency.</span>
-            <span className="text-white/[0.2]">•</span>
-            <a
-              href={`${(import.meta.env.BASE_URL || '/').replace(/\/+$/, '')}/admin`}
-              onClick={(e) => {
-                if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
-                  e.preventDefault();
-                  const adminUrl = `${(import.meta.env.BASE_URL || '/').replace(/\/+$/, '')}/admin`;
-                  window.history.pushState(null, '', adminUrl);
-                  window.dispatchEvent(new PopStateEvent('popstate'));
-                }
-              }}
-              className="text-[#94a3b8] hover:text-[#38bdf8] transition-colors cursor-pointer text-[11px] font-mono"
-            >
-              Admin Portal
-            </a>
           </div>
 
           <button

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, CheckCircle2, MessageCircle, ArrowRight, Mail, Clock, ShieldCheck, Globe, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle2, MessageCircle, Mail, Clock, ShieldCheck, Globe, AlertCircle } from 'lucide-react';
 import { PricingPlan } from '../types';
 import { fadeUpVariant, VIEWPORT_CONFIG } from '../lib/motion';
 import { getSupabase } from '../lib/supabase';
@@ -153,51 +153,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     <section id="contact" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* FINAL CTA BANNER (Large glass container with blue atmospheric background) */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_CONFIG}
-          variants={fadeUpVariant}
-          className="mb-20 glass-level-2 rounded-3xl p-8 sm:p-12 md:p-16 border border-[#38bdf8]/40 relative overflow-hidden text-center shadow-[0_32px_80px_rgba(5,11,20,0.9)]"
-        >
-          {/* Subtle light catchment top */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#67e8f9]/70 to-transparent" />
-
-          <div className="max-w-3xl mx-auto">
-            <div className="inline-flex items-center px-3.5 py-1 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 mb-4">
-              <span className="text-xs font-display uppercase tracking-[0.16em] text-[#67e8f9] font-bold">
-                Digital Growth & Technology
-              </span>
-            </div>
-
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold text-white tracking-tight leading-tight">
-              Ready to Build Something That Works?
-            </h2>
-
-            <p className="mt-4 text-base sm:text-lg text-[#bdc8d1] leading-relaxed">
-              Tell us about your business and what you're trying to achieve.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="#project-form"
-                className="btn-primary-luminescence px-8 py-3.5 rounded-full text-sm font-semibold flex items-center space-x-2 shadow-lg"
-              >
-                <span>Start a Project</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-
-              <a
-                href="#project-form"
-                className="btn-acrylic px-7 py-3.5 rounded-full text-sm font-semibold"
-              >
-                <span>Request a Quote</span>
-              </a>
-            </div>
-          </div>
-        </motion.div>
-
         {/* CONTACT / PROJECT INQUIRY FORM with scroll reveal */}
         <motion.div
           initial="hidden"

@@ -43,19 +43,6 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
           <p className="mt-3 text-base sm:text-lg text-[#bdc8d1] font-normal leading-relaxed">
             Every business is different. We don't believe in rigid, one-size-fits-all packages. Tell us your goals and we will structure the right solution for your exact requirements.
           </p>
-
-          {onOpenPackages && (
-            <div className="mt-6 flex items-center justify-center">
-              <button
-                onClick={() => onOpenPackages()}
-                className="btn-acrylic px-5 py-2.5 rounded-full text-xs font-semibold text-[#8ed5ff] hover:text-white flex items-center space-x-2 cursor-pointer shadow-sm hover:border-[#38bdf8]/50 transition-all group"
-              >
-                <Layers className="w-4 h-4 text-[#38bdf8] group-hover:scale-110 transition-transform" />
-                <span>View Dedicated 4-Tier Packages (All 9 Services)</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#38bdf8] group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          )}
         </motion.div>
 
         {/* 4 International Pricing Cards (Responsive 4-column layout) with staggered reveal */}

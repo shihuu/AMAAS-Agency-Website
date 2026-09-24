@@ -10,16 +10,17 @@ import { AiSolutionsSection } from './components/AiSolutionsSection';
 import { MarketingSection } from './components/MarketingSection';
 import { ProcessSection } from './components/ProcessSection';
 import { TechnologySection } from './components/TechnologySection';
-import { PricingSection } from './components/PricingSection';
 import { AboutSection } from './components/AboutSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { AllProjectsPage } from './components/AllProjectsPage';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ServicePackagesModal } from './components/ServicePackagesModal';
+import { ServicesAndPackagesSection } from './components/ServicesAndPackagesSection';
 import { PricingPlan, Project, ServiceItem, ServicePackage } from './types';
 import { fetchProjectsFromDB, fetchServicesFromDB, fetchPricingFromDB, fetchWebsiteContent } from './lib/cmsData';
 import { PROJECTS_DATA, SERVICES_DATA, PRICING_PLANS } from './data';
+import { SERVICE_PACKAGES_DATA } from './data/servicePackagesData';
 import { AdminApp } from './admin/AdminApp';
 
 const checkIsAdminPath = () => {
@@ -67,10 +68,27 @@ export default function App() {
   const [activeCaseStudy, setActiveCaseStudy] = useState<Project | null>(null);
   const [isPackagesModalOpen, setIsPackagesModalOpen] = useState(false);
   const [activePackageService, setActivePackageService] = useState<string | undefined>(undefined);
+  const [packageServiceIndex, setPackageServiceIndex] = useState<number>(0);
 
   const handleOpenPackages = (serviceTitle?: string) => {
-    setActivePackageService(serviceTitle);
-    setIsPackagesModalOpen(true);
+    if (serviceTitle) {
+      const idx = SERVICE_PACKAGES_DATA.findIndex(
+        (s) =>
+          s.serviceTitle.toLowerCase() === serviceTitle.toLowerCase() ||
+          serviceTitle.toLowerCase().includes(s.serviceTitle.toLowerCase()) ||
+          s.serviceTitle.toLowerCase().includes(serviceTitle.toLowerCase())
+      );
+      if (idx >= 0) {
+        setPackageServiceIndex(idx);
+      }
+    }
+    const pkgEl = document.getElementById('packages');
+    if (pkgEl) {
+      pkgEl.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setActivePackageService(serviceTitle);
+      setIsPackagesModalOpen(true);
+    }
   };
 
   const handleSelectServicePackage = (serviceTitle: string, packageTier: ServicePackage) => {
@@ -171,11 +189,11 @@ export default function App() {
     if (currentView !== 'home') {
       setCurrentView('home');
       setTimeout(() => {
-        const el = document.getElementById('pricing');
+        const el = document.getElementById('packages') || document.getElementById('contact');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     } else {
-      const el = document.getElementById('pricing');
+      const el = document.getElementById('packages') || document.getElementById('contact');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -260,6 +278,14 @@ export default function App() {
               onOpenPackages={handleOpenPackages}
             />
 
+            {/* Interactive 4-Tier Services & Packages Showcase */}
+            <ServicesAndPackagesSection
+              selectedServiceIndex={packageServiceIndex}
+              onServiceIndexChange={setPackageServiceIndex}
+              onSelectPackage={handleSelectServicePackage}
+              onCustomQuote={scrollToPricing}
+            />
+
             {/* Business Solutions */}
             <BusinessSolutionsSection
               onSelectSolution={(solutionName) => {
@@ -321,14 +347,6 @@ export default function App() {
 
             {/* 11. Technology */}
             <TechnologySection />
-
-            {/* 12. Pricing / Custom Quotation */}
-            <PricingSection
-              plans={pricing}
-              onSelectPlan={handleSelectPlan}
-              onCustomQuote={scrollToContact}
-              onOpenPackages={handleOpenPackages}
-            />
 
             {/* 13. Why AMAAS & 14. About */}
             <AboutSection />
