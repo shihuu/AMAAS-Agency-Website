@@ -6,7 +6,7 @@ import { fadeUpVariant, staggerContainer, cardRevealVariant, VIEWPORT_CONFIG } f
 
 export const TechnologySection: React.FC = () => {
   return (
-    <section className="py-20 relative">
+    <section id="technology" className="py-20 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Glass Container with scroll entrance */}
@@ -15,7 +15,7 @@ export const TechnologySection: React.FC = () => {
           whileInView="visible"
           viewport={VIEWPORT_CONFIG}
           variants={fadeUpVariant}
-          className="glass-level-2 rounded-3xl p-8 sm:p-12 border border-[#38bdf8]/30 relative overflow-hidden shadow-[0_24px_64px_rgba(5,11,20,0.85)]"
+          className="glass-level-2 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-[#38bdf8]/30 relative overflow-hidden shadow-[0_24px_64px_rgba(5,11,20,0.85)]"
         >
           
           {/* Subtle top light catchment */}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AmaasLogo } from './AmaasLogo';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   onStartProject: () => void;
@@ -77,8 +78,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject, onNavigateSectio
           <AmaasLogo size="sm" />
         </button>
 
-        {/* Desktop Navigation with animated active pill */}
-        <nav className="hidden md:flex items-center space-x-1 glass-level-1 px-3 py-1.5 rounded-full border border-white/[0.08]">
+        {/* Desktop Navigation with animated active pill (xl: and above for all 10 links) */}
+        <nav className="hidden xl:flex items-center space-x-1 glass-level-1 px-3 py-1.5 rounded-full border border-white/[0.08]">
           {navLinks.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -102,8 +103,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject, onNavigateSectio
           })}
         </nav>
 
-        {/* Primary CTA */}
-        <div className="hidden md:flex items-center">
+        {/* Primary CTA (Desktop) */}
+        <div className="hidden xl:flex items-center space-x-3">
+          <PWAInstallButton variant="nav" />
           <button
             onClick={onStartProject}
             className="btn-primary-luminescence inline-flex items-center space-x-2 px-5 py-2.5 rounded-full text-sm font-semibold cursor-pointer group"
@@ -113,20 +115,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject, onNavigateSectio
           </button>
         </div>
 
-        {/* Mobile Hamburger Button */}
-        <div className="flex items-center space-x-2 md:hidden">
+        {/* Mobile & Tablet Quick Actions / Hamburger */}
+        <div className="flex items-center space-x-2.5 xl:hidden">
+          <button
+            onClick={onStartProject}
+            className="btn-primary-luminescence px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold flex items-center space-x-1.5 shadow-md cursor-pointer"
+          >
+            <span>Start a Project</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </button>
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl text-[#bdc8d1] hover:text-white glass-level-1 border border-white/[0.1] active:scale-95 transition-transform"
+            className="p-2.5 rounded-xl text-[#bdc8d1] hover:text-white glass-level-1 border border-white/[0.1] active:scale-95 transition-transform cursor-pointer"
             aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
           </button>
         </div>
 
       </div>
 
-      {/* Mobile Menu Drawer with AnimatePresence */}
+      {/* Mobile & Tablet Menu Drawer with AnimatePresence */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -134,32 +144,39 @@ export const Navbar: React.FC<NavbarProps> = ({ onStartProject, onNavigateSectio
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden glass-level-2 mt-3 mx-4 p-5 rounded-2xl border border-[#38bdf8]/30 shadow-2xl"
+            className="xl:hidden glass-level-2 mt-3 mx-3 sm:mx-6 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-[#38bdf8]/30 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto"
           >
-            <div className="flex flex-col space-y-2">
-              {navLinks.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                    activeSection === item.id
-                      ? 'bg-[#38bdf8]/20 text-[#8ed5ff] border border-[#38bdf8]/40'
-                      : 'text-[#dce3f0] hover:bg-white/[0.05]'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
+            <div className="flex flex-col">
+              {/* Navigation Links: 1 col on mobile, 2 cols on tablet */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+                {navLinks.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`text-left px-4 py-3 min-h-[44px] rounded-xl text-sm font-medium transition-all flex items-center justify-between cursor-pointer ${
+                      activeSection === item.id
+                        ? 'bg-[#38bdf8]/20 text-[#8ed5ff] border border-[#38bdf8]/40 shadow-sm'
+                        : 'text-[#dce3f0] hover:bg-white/[0.06] border border-transparent'
+                    }`}
+                  >
+                    <span>{item.label}</span>
+                    {activeSection === item.id && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#38bdf8] shadow-[0_0_8px_#38bdf8]" />
+                    )}
+                  </button>
+                ))}
+              </div>
 
-              <div className="pt-4 mt-2 border-t border-white/[0.08]">
+              <div className="pt-4 mt-3 border-t border-white/[0.08] flex flex-col gap-2.5">
+                <PWAInstallButton variant="drawer" />
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onStartProject();
                   }}
-                  className="btn-primary-luminescence w-full py-3 rounded-xl text-center font-semibold text-sm flex items-center justify-center space-x-2"
+                  className="btn-primary-luminescence w-full py-3.5 rounded-xl text-center font-semibold text-sm flex items-center justify-center space-x-2 cursor-pointer shadow-lg"
                 >
-                  <span>Start a Project</span>
+                  <span>Book Consultation & Start a Project</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </button>
               </div>

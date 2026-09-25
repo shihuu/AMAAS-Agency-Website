@@ -22,6 +22,7 @@ import { fetchProjectsFromDB, fetchServicesFromDB, fetchPricingFromDB, fetchWebs
 import { PROJECTS_DATA, SERVICES_DATA, PRICING_PLANS } from './data';
 import { SERVICE_PACKAGES_DATA } from './data/servicePackagesData';
 import { AdminApp } from './admin/AdminApp';
+import { OfflineIndicator } from './components/OfflineIndicator';
 
 const checkIsAdminPath = () => {
   if (typeof window === 'undefined') return false;
@@ -397,6 +398,8 @@ export default function App() {
           />
         )}
       </AnimatePresence>
+      {/* Offline Connectivity Indicator */}
+      <OfflineIndicator />
     </div>
   );
 }

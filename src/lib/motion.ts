@@ -20,10 +20,11 @@ export const TRANSITION_SLOW: Transition = {
 };
 
 // Reusable viewport configuration for IntersectionObserver scroll triggers
+// Optimized for mobile, tablet, and desktop to ensure sections reveal reliably
 export const VIEWPORT_CONFIG = {
   once: true,
-  margin: '-60px 0px -60px 0px',
-  amount: 0.15,
+  margin: '0px 0px -20px 0px',
+  amount: 0.02,
 };
 
 // Fade up with slight blur for high-end text and titles

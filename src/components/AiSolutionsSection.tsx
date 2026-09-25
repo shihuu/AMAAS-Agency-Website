@@ -184,20 +184,20 @@ export const AiSolutionsSection: React.FC<AiSolutionsSectionProps> = ({ onStartA
             whileInView="visible"
             viewport={VIEWPORT_CONFIG}
             variants={fadeUpVariant}
-            className="lg:col-span-7 glass-level-2 rounded-3xl p-6 sm:p-8 border border-[#38bdf8]/35 shadow-[0_24px_64px_rgba(5,11,20,0.9)] flex flex-col justify-between relative overflow-hidden"
+            className="lg:col-span-7 glass-level-2 rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8 border border-[#38bdf8]/35 shadow-[0_24px_64px_rgba(5,11,20,0.9)] flex flex-col justify-between relative overflow-hidden"
           >
             {/* Light Catchment */}
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#67e8f9]/70 to-transparent" />
 
             <div>
               {/* Header with Demo Disclaimer Pill */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/[0.08]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 sm:pb-5 border-b border-white/[0.08]">
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-2xl bg-[#38bdf8]/15 border border-[#38bdf8]/40 flex items-center justify-center text-[#38bdf8]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#38bdf8]/15 border border-[#38bdf8]/40 flex items-center justify-center text-[#38bdf8] shrink-0">
                     <Bot className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-semibold text-white flex items-center space-x-2">
+                    <h3 className="font-display text-base sm:text-lg font-semibold text-white flex items-center space-x-2">
                       <span>AMAAS AI Assistant</span>
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     </h3>
@@ -206,13 +206,13 @@ export const AiSolutionsSection: React.FC<AiSolutionsSectionProps> = ({ onStartA
                 </div>
 
                 {/* Clear Demonstration Badge */}
-                <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-[10px] font-mono uppercase tracking-wider text-amber-300">
+                <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-[10px] font-mono uppercase tracking-wider text-amber-300 self-start sm:self-auto">
                   <span>Interactive Demonstration</span>
                 </div>
               </div>
 
               {/* Scenario Selector Tabs */}
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-1.5 sm:gap-2">
                 {DEMO_SCENARIOS.map((scenario) => (
                   <button
                     key={scenario.id}
@@ -229,7 +229,7 @@ export const AiSolutionsSection: React.FC<AiSolutionsSectionProps> = ({ onStartA
               </div>
 
               {/* Chat Message Window */}
-              <div className="mt-5 p-4 sm:p-5 rounded-2xl bg-[#03070E]/80 border border-white/[0.06] min-h-[260px] max-h-[340px] overflow-y-auto space-y-3.5">
+              <div className="mt-4 sm:mt-5 p-3.5 sm:p-5 rounded-2xl bg-[#03070E]/80 border border-white/[0.06] min-h-[240px] sm:min-h-[260px] max-h-[340px] overflow-y-auto space-y-3.5">
                 <AnimatePresence initial={false}>
                   {conversation.map((msg, index) => {
                     const isBot = msg.sender === 'assistant';
@@ -247,7 +247,7 @@ export const AiSolutionsSection: React.FC<AiSolutionsSectionProps> = ({ onStartA
                           <span>{msg.time}</span>
                         </div>
                         <div
-                          className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-line ${
+                          className={`max-w-[92%] sm:max-w-[85%] px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-line ${
                             isBot
                               ? 'bg-[#0b1c33] border border-[#38bdf8]/30 text-[#e0f2fe]'
                               : 'bg-gradient-to-r from-[#184b82] to-[#0284c7] text-white'
@@ -273,7 +273,7 @@ export const AiSolutionsSection: React.FC<AiSolutionsSectionProps> = ({ onStartA
                     <span>Reset dialogue</span>
                   </button>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {activeScenario.suggestedQuestions.map((q, idx) => (
                     <button
                       key={idx}
@@ -289,11 +289,11 @@ export const AiSolutionsSection: React.FC<AiSolutionsSectionProps> = ({ onStartA
             </div>
 
             {/* Bottom Clarification Notice */}
-            <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-[#bdc8d1]/70">
-              <span>* Safe demonstration only. Actual client models are grounded on verified proprietary data.</span>
+            <div className="mt-6 pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] text-[#bdc8d1]/70">
+              <span className="leading-snug">* Safe demonstration only. Actual client models are grounded on verified proprietary data.</span>
               <button
                 onClick={onStartAiProject}
-                className="text-xs font-display font-semibold text-[#67e8f9] hover:text-white flex items-center space-x-1 cursor-pointer"
+                className="text-xs font-display font-semibold text-[#67e8f9] hover:text-white flex items-center space-x-1 cursor-pointer shrink-0"
               >
                 <span>Request AI Solution</span>
                 <ArrowRight className="w-3.5 h-3.5" />

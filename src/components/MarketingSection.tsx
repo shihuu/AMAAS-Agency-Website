@@ -95,17 +95,17 @@ export const MarketingSection: React.FC<MarketingSectionProps> = ({ onStartMarke
           whileInView="visible"
           viewport={VIEWPORT_CONFIG}
           variants={fadeUpVariant}
-          className="mb-16 glass-level-2 rounded-3xl p-6 sm:p-8 md:p-10 border border-[#38bdf8]/35 shadow-[0_28px_72px_rgba(5,11,20,0.92)] relative overflow-hidden"
+          className="mb-16 glass-level-2 rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-10 border border-[#38bdf8]/35 shadow-[0_28px_72px_rgba(5,11,20,0.92)] relative overflow-hidden"
         >
           {/* Top light rim */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#67e8f9]/70 to-transparent" />
 
           {/* Illustrative View Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 sm:pb-6 border-b border-white/[0.08]">
             <div>
               <div className="flex items-center space-x-2.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
-                <h3 className="font-display text-xl font-bold text-white tracking-tight">
+                <h3 className="font-display text-lg sm:text-xl font-bold text-white tracking-tight">
                   Attribution & Performance Analytics
                 </h3>
               </div>
@@ -115,14 +115,14 @@ export const MarketingSection: React.FC<MarketingSectionProps> = ({ onStartMarke
             </div>
 
             {/* Prominent Mandatory Label */}
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-xs font-mono text-cyan-300">
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-[11px] sm:text-xs font-mono text-cyan-300 self-start sm:self-auto">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
               <span>Illustrative Dashboard — Sample Campaign View</span>
             </div>
           </div>
 
           {/* Dashboard Metrics Grid (Illustrative Sample Architecture) */}
-          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div className="p-4 rounded-2xl bg-[#050B14]/70 border border-white/[0.06]">
               <div className="text-[11px] font-display uppercase tracking-wider text-[#bdc8d1]/80">
                 Primary Channel
@@ -173,13 +173,13 @@ export const MarketingSection: React.FC<MarketingSectionProps> = ({ onStartMarke
           </div>
 
           {/* Sample Funnel Visualization Bar */}
-          <div className="mt-8 p-5 rounded-2xl bg-[#03070E]/80 border border-white/[0.06]">
-            <div className="flex items-center justify-between text-xs text-[#bdc8d1] mb-3">
+          <div className="mt-6 sm:mt-8 p-4 sm:p-5 rounded-2xl bg-[#03070E]/80 border border-white/[0.06]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs text-[#bdc8d1] mb-3">
               <span className="font-display font-semibold text-white">End-to-End Acquisition Funnel Mechanics:</span>
               <span className="font-mono text-[#38bdf8] text-[11px]">Structured Journey</span>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
               <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
                 <div className="font-display font-semibold text-[#8ed5ff]">1. High-Intent Traffic</div>
                 <div className="text-[11px] text-[#bdc8d1]/75 mt-1">SEO & Paid Search capture qualified shoppers and business inquiries.</div>

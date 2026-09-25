@@ -150,11 +150,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
 
-                <div className="flex items-center justify-between text-[11px] text-[#bdc8d1]/75 px-1">
+                <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] text-[#bdc8d1]/75 px-1">
                   <span className="font-mono text-[10px] text-[#38bdf8]/85">Starter • Business • Premium • Custom</span>
                   <button
                     onClick={onStartProject}
-                    className="text-[#bdc8d1] hover:text-white hover:underline cursor-pointer"
+                    className="text-[#bdc8d1] hover:text-white hover:underline cursor-pointer text-[11px]"
                   >
                     Custom Inquiry
                   </button>

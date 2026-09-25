@@ -101,11 +101,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.48, ease: EASE_PREMIUM }}
-            className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+            className="mt-8 sm:mt-9 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto"
           >
             <button
               onClick={onStartProject}
-              className="btn-primary-luminescence px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold flex items-center space-x-2 cursor-pointer group shadow-lg"
+              className="btn-primary-luminescence w-full sm:w-auto px-8 py-3.5 rounded-full text-sm sm:text-base font-semibold flex items-center justify-center space-x-2 cursor-pointer group shadow-lg"
             >
               <span>{primaryCta}</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -113,14 +113,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             <button
               onClick={onViewWork}
-              className="btn-acrylic px-7 py-3.5 rounded-full text-sm sm:text-base font-semibold flex items-center space-x-2 cursor-pointer"
+              className="btn-acrylic w-full sm:w-auto px-7 py-3.5 rounded-full text-sm sm:text-base font-semibold flex items-center justify-center space-x-2 cursor-pointer"
             >
               <span>{secondaryCta}</span>
             </button>
 
             <button
               onClick={onGetQuote}
-              className="px-5 py-3.5 rounded-full text-sm font-medium text-[#8ed5ff] hover:text-white transition-all duration-200 flex items-center space-x-1.5 hover:bg-white/[0.04] active:scale-95 cursor-pointer"
+              className="w-full sm:w-auto px-5 py-3 rounded-full text-sm font-medium text-[#8ed5ff] hover:text-white transition-all duration-200 flex items-center justify-center space-x-1.5 hover:bg-white/[0.04] active:scale-95 cursor-pointer"
             >
               <span>Request a Quote</span>
               <ChevronRight className="w-4 h-4" />
@@ -136,7 +136,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHoveringCard(true)}
           onMouseLeave={handleMouseLeave}
-          className="mt-16 sm:mt-20 max-w-5xl mx-auto"
+          className="mt-14 sm:mt-20 max-w-5xl mx-auto"
         >
           <motion.div
             animate={{
@@ -144,7 +144,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               y: mouseOffset.y,
             }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="glass-level-2 p-6 sm:p-8 rounded-3xl border border-[#38bdf8]/35 relative shadow-[0_32px_80px_-16px_rgba(5,11,20,0.95)] overflow-hidden transition-all duration-300 hover:border-[#38bdf8]/50 hover:shadow-[0_36px_90px_-16px_rgba(5,11,20,0.98),0_0_30px_rgba(56,189,248,0.18)]"
+            className="glass-level-2 p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-[#38bdf8]/35 relative shadow-[0_32px_80px_-16px_rgba(5,11,20,0.95)] overflow-hidden transition-all duration-300 hover:border-[#38bdf8]/50 hover:shadow-[0_36px_90px_-16px_rgba(5,11,20,0.98),0_0_30px_rgba(56,189,248,0.18)]"
           >
             
             {/* Top Light Catchment Rim */}

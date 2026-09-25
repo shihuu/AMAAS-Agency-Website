@@ -162,9 +162,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           id="project-form"
           className="max-w-4xl mx-auto"
         >
-          <div className="glass-level-1 rounded-3xl p-6 sm:p-10 border border-white/[0.08] relative">
+          <div className="glass-level-1 rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-10 border border-white/[0.08] relative">
             
-            <div className="text-center mb-10">
+            <div className="text-center mb-8 sm:mb-10">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30 mb-2">
                 <span className="text-xs font-display uppercase tracking-widest text-[#67e8f9] font-bold">
                   Direct Project Inquiry
@@ -173,7 +173,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white">
                 Book a Consultation & Request a Quote
               </h3>
-              <p className="text-xs sm:text-sm text-[#bdc8d1] mt-1">
+              <p className="text-xs sm:text-sm text-[#bdc8d1] mt-1.5 max-w-xl mx-auto leading-relaxed">
                 Tell us about your business and what you're trying to achieve. You will receive an initial architectural and strategic response within 24 hours.
               </p>
             </div>
@@ -426,17 +426,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             </AnimatePresence>
 
             {/* Response Time Guarantee note */}
-            <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-center gap-6 text-xs text-[#bdc8d1]/70">
+            <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-[#bdc8d1]/75 text-center">
               <div className="flex items-center space-x-1.5">
-                <Clock className="w-3.5 h-3.5 text-[#38bdf8]" />
+                <Clock className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
                 <span>Response within 24 hours</span>
               </div>
               <div className="flex items-center space-x-1.5">
-                <Globe className="w-3.5 h-3.5 text-[#38bdf8]" />
+                <Globe className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
                 <span>Working with clients across US, UK, EU, CA, AU & UAE</span>
               </div>
               <div className="flex items-center space-x-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#38bdf8]" />
+                <ShieldCheck className="w-3.5 h-3.5 text-[#38bdf8] shrink-0" />
                 <span>NDA & Client Confidentiality Respected</span>
               </div>
             </div>

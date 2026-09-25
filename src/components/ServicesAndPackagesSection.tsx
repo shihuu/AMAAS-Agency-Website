@@ -192,7 +192,7 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
           </p>
 
           {/* Dynamic Auto-Rotation Status & Controls Bar */}
-          <div className="mt-6 inline-flex items-center justify-center space-x-3 px-4 py-2 rounded-full glass-level-1 border border-white/[0.08] shadow-sm">
+          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-2xl sm:rounded-full glass-level-1 border border-white/[0.08] shadow-sm max-w-full">
             {/* Auto indicator pill */}
             <div className="flex items-center space-x-2 text-xs">
               <span className="relative flex h-2 w-2">
@@ -207,14 +207,14 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
               </span>
               <span className="font-mono text-[11px] text-[#7bd0ff] tracking-wide">
                 {isPaused
-                  ? 'Showcase Paused (User Interacting)'
+                  ? 'Showcase Paused'
                   : isReducedMotion
                   ? 'Manual Mode'
                   : 'Auto-cycling Services'}
               </span>
             </div>
 
-            <span className="text-white/20">|</span>
+            <span className="text-white/20 hidden sm:inline">|</span>
 
             {/* Play/Pause Button */}
             <button
@@ -267,16 +267,16 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
         </motion.div>
 
         {/* 9-Service Interactive Selector Tabs */}
-        <div className="relative mb-8">
-          {/* Scroll fade gradients for mobile touch */}
-          <div className="hidden sm:block absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#03070E] to-transparent pointer-events-none z-10" />
-          <div className="hidden sm:block absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#03070E] to-transparent pointer-events-none z-10" />
+        <div className="relative mb-6 sm:mb-8">
+          {/* Scroll fade gradients for mobile and tablet touch */}
+          <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-r from-[#03070E] to-transparent pointer-events-none z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-l from-[#03070E] to-transparent pointer-events-none z-10" />
 
           <div
             ref={tabsContainerRef}
             role="tablist"
             aria-label="Services list"
-            className="flex items-center space-x-2 overflow-x-auto scrollbar-none py-2 px-1 scroll-smooth"
+            className="flex items-center space-x-2 overflow-x-auto scrollbar-none py-2 px-2 sm:px-1 scroll-smooth touch-pan-x overscroll-x-contain"
           >
             {SERVICE_PACKAGES_DATA.map((serviceGroup, idx) => {
               const isActive = idx === activeServiceIndex;
@@ -354,16 +354,16 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
             className="space-y-6"
           >
             {/* Active Service Overview Banner */}
-            <div className="glass-level-2 p-6 sm:p-7 rounded-3xl border border-[#38bdf8]/30 shadow-[0_20px_50px_rgba(5,11,20,0.85)] flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative overflow-hidden">
+            <div className="glass-level-2 p-5 sm:p-7 rounded-2xl sm:rounded-3xl border border-[#38bdf8]/30 shadow-[0_20px_50px_rgba(5,11,20,0.85)] flex flex-col md:flex-row md:items-center md:justify-between gap-5 sm:gap-6 relative overflow-hidden">
               {/* Corner cyan gradient accent */}
               <div className="absolute top-0 right-0 w-80 h-80 bg-[#38bdf8]/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
 
-              <div className="flex items-start space-x-4 relative z-10">
-                <div className="p-3.5 sm:p-4 rounded-2xl bg-[#050B14] border border-[#38bdf8]/40 shadow-inner shrink-0 text-[#38bdf8]">
-                  {getServiceIcon(currentService.iconName, 'w-6 h-6 sm:w-7 sm:h-7')}
+              <div className="flex items-start space-x-3.5 sm:space-x-4 relative z-10">
+                <div className="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#050B14] border border-[#38bdf8]/40 shadow-inner shrink-0 text-[#38bdf8]">
+                  {getServiceIcon(currentService.iconName, 'w-5 h-5 sm:w-7 sm:h-7')}
                 </div>
                 <div>
-                  <div className="flex items-center space-x-2.5 mb-1.5 flex-wrap gap-y-1">
+                  <div className="flex items-center space-x-2 mb-1.5 flex-wrap gap-y-1">
                     <span className="font-mono text-xs font-bold text-[#38bdf8] px-2.5 py-0.5 rounded-full bg-[#38bdf8]/10 border border-[#38bdf8]/30">
                       Service {currentService.serviceNumber} of 09
                     </span>
@@ -372,23 +372,23 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-white tracking-tight">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-display font-bold text-white tracking-tight">
                     {currentService.serviceTitle} Packages
                   </h3>
 
-                  <p className="mt-2 text-sm sm:text-base text-[#bdc8d1] max-w-3xl leading-relaxed">
+                  <p className="mt-1.5 sm:mt-2 text-xs sm:text-base text-[#bdc8d1] max-w-3xl leading-relaxed">
                     {currentService.shortDescription}
                   </p>
                 </div>
               </div>
 
               {/* Service Navigation Jump & Scope Indicator */}
-              <div className="shrink-0 flex items-center md:flex-col md:items-end justify-between pt-4 md:pt-0 border-t md:border-t-0 border-white/[0.08] relative z-10">
+              <div className="shrink-0 flex items-center md:flex-col md:items-end justify-between pt-3 md:pt-0 border-t md:border-t-0 border-white/[0.08] relative z-10">
                 <div className="text-left md:text-right">
-                  <span className="text-[11px] font-mono text-[#7bd0ff] uppercase tracking-wider block">
+                  <span className="text-[10px] sm:text-[11px] font-mono text-[#7bd0ff] uppercase tracking-wider block">
                     Tailored Quotation
                   </span>
-                  <span className="text-sm font-semibold text-white">
+                  <span className="text-xs sm:text-sm font-semibold text-white">
                     4 Distinct Tiers
                   </span>
                 </div>
@@ -397,8 +397,8 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
 
             {/* Special Disclaimer / Transparency Notice if present (e.g. SEO algorithm realities, Ad Spend separation) */}
             {currentService.disclaimer && (
-              <div className="p-4 rounded-2xl bg-[#38bdf8]/10 border border-[#38bdf8]/35 flex items-start space-x-3 text-xs sm:text-sm text-[#dce3f0] shadow-sm">
-                <AlertCircle className="w-5 h-5 text-[#38bdf8] shrink-0 mt-0.5" />
+              <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[#38bdf8]/10 border border-[#38bdf8]/35 flex items-start space-x-3 text-xs sm:text-sm text-[#dce3f0] shadow-sm">
+                <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#38bdf8] shrink-0 mt-0.5" />
                 <div className="leading-relaxed">
                   <strong className="text-white font-semibold">Important Transparency Notice: </strong>
                   {currentService.disclaimer}
@@ -407,7 +407,7 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
             )}
 
             {/* 4 Packages Grid: STARTER | BUSINESS | PREMIUM | CUSTOM */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6 items-stretch">
               {currentService.packages.map((pkg) => {
                 const isBusiness = pkg.level === 'BUSINESS';
                 const isCustom = pkg.level === 'CUSTOM';
@@ -417,7 +417,7 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
                     key={pkg.level}
                     whileHover={{ y: isBusiness ? -8 : -5 }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className={`rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 relative ${
+                    className={`rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between transition-all duration-300 relative ${
                       isBusiness
                         ? 'glass-level-2 border-2 border-[#38bdf8] shadow-[0_24px_64px_-12px_rgba(56,189,248,0.28)] bg-gradient-to-b from-[#0e223d]/85 to-[#071325]/90'
                         : 'glass-level-1 border border-white/[0.08] hover:border-[#38bdf8]/45 hover:shadow-[0_20px_45px_-10px_rgba(5,11,20,0.85)] bg-[#050B14]/65'
@@ -515,8 +515,8 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
             </div>
 
             {/* Bottom Multi-Service & Enterprise Guidance Bar */}
-            <div className="glass-level-1 p-5 sm:p-6 rounded-3xl border border-white/[0.08] flex flex-col lg:flex-row items-center justify-between gap-5 text-center lg:text-left">
-              <div className="flex items-center space-x-3.5">
+            <div className="glass-level-1 p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/[0.08] flex flex-col lg:flex-row items-center justify-between gap-5 text-center lg:text-left">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3.5">
                 <div className="w-11 h-11 rounded-2xl bg-[#38bdf8]/10 border border-[#38bdf8]/20 flex items-center justify-center shrink-0 text-[#38bdf8]">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
@@ -524,16 +524,16 @@ export const ServicesAndPackagesSection: React.FC<ServicesAndPackagesSectionProp
                   <h5 className="text-sm sm:text-base font-display font-bold text-white">
                     Need a Unified Multi-Service Package or Growth Retainer?
                   </h5>
-                  <p className="text-xs sm:text-sm text-[#bdc8d1] mt-0.5">
+                  <p className="text-xs sm:text-sm text-[#bdc8d1] mt-0.5 leading-relaxed">
                     We bundle website development, AI assistants, automated operational pipelines, and paid ad management into seamless, single-partner contracts.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-3 shrink-0">
+              <div className="flex items-center space-x-3 shrink-0 w-full sm:w-auto">
                 <button
                   onClick={onCustomQuote}
-                  className="btn-primary-luminescence px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold text-white whitespace-nowrap cursor-pointer shadow-lg flex items-center space-x-2"
+                  className="btn-primary-luminescence w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-semibold text-white cursor-pointer shadow-lg flex items-center justify-center space-x-2"
                 >
                   <span>Build Custom Cross-Service Plan</span>
                   <ArrowRight className="w-4 h-4" />
